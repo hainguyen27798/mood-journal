@@ -1,9 +1,5 @@
-import { Button } from 'antd';
+import { Dashboard } from '@/components';
 
 export default function Home() {
-  return (
-    <div>
-      <Button>abc</Button>
-    </div>
-  );
+  return <Dashboard />;
 }

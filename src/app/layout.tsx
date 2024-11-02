@@ -1,11 +1,12 @@
 import './globals.css';
 
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { ConfigProvider } from 'antd';
+import { App, ConfigProvider } from 'antd';
 import type { Metadata } from 'next';
 import { Nunito, Nunito_Sans } from 'next/font/google';
 import React from 'react';
 
+import { Transition } from '@/lib/motion';
 import { themeConfig } from '@/lib/theme/antd';
 
 const nunito = Nunito({
@@ -34,7 +35,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.className} ${nunitoSans.variable}`}>
         <AntdRegistry>
-          <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>
+          <ConfigProvider theme={themeConfig}>
+            <App>
+              <Transition>{children}</Transition>
+            </App>
+          </ConfigProvider>
         </AntdRegistry>
       </body>
     </html>

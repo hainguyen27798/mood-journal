@@ -1,27 +1,41 @@
 'use client';
 
-import { Button, Input } from 'antd';
+import { App, Button, Input } from 'antd';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import { AnimText } from '@/lib/motion';
 
 export default function Login() {
   const [loading, setLoading] = useState<boolean>(false);
+  const { message } = App.useApp();
+  const router = useRouter();
 
   const onLogin = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      message.success('Login successfully!').then();
+      router.push('/');
     }, 2000);
   };
 
   return (
-    <div className="flex min-h-screen w-screen items-center justify-center overflow-auto bg-neutral-100 p-4">
-      <div className="flex w-[320px] max-w-full flex-wrap items-center overflow-auto rounded-2xl bg-white shadow-lg md:w-[800px]">
+    <div className="flex size-full min-h-screen items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.5 }}
+        className="flex w-[320px] max-w-full flex-wrap items-center overflow-auto rounded-2xl bg-white shadow-lg md:w-[800px]"
+      >
         <div className="w-full md:w-3/5">
           <img src="/img/login-banner.svg" alt="" />
         </div>
         <div className="flex w-full flex-col items-center gap-4 p-6 md:w-2/5 md:pl-3">
           <div className="mb-2 text-center text-xl font-semibold">
-            Welcome to <span className="font-bold text-primary">Daily Running</span>
+            <AnimText texts={['Welcome to', 'Login to']} delay={1} />{' '}
+            <span className="font-bold text-primary">Daily Running</span>
           </div>
           <div className="w-full">
             <div className="mb-1 text-sm text-neutral-500">Username</div>
@@ -35,7 +49,7 @@ export default function Login() {
             {loading ? 'Logging in...' : 'Login'}
           </Button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
