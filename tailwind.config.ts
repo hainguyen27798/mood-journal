@@ -7,10 +7,14 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      sans: 'var(--font-nunito)',
+    },
     extend: {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        primary: 'var(--color-primary)',
       },
     },
   },
