@@ -1,4 +1,5 @@
-import AnimText from '@/lib/motion/AnimText';
+import AnimInfinityText from '@/lib/motion/AnimInfinityText';
+import AnimInText from '@/lib/motion/AnimText';
 import Transition from '@/lib/motion/Transition';
 
-export { AnimText, Transition };
+export { AnimInfinityText, AnimInText, Transition };

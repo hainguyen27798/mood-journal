@@ -16,6 +16,10 @@ export const themeConfig: ThemeConfig = {
     Button: {
       fontSize: 16,
       controlHeight: 36,
+      dangerColor: colors.red[400],
+    },
+    Divider: {
+      colorSplit: colors.neutral[200],
     },
   },
 };

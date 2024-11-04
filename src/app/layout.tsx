@@ -37,7 +37,9 @@ export default function RootLayout({
         <AntdRegistry>
           <ConfigProvider theme={themeConfig}>
             <App>
-              <Transition>{children}</Transition>
+              <div className="min-h-screen w-screen overflow-auto bg-neutral-100">
+                <Transition>{children}</Transition>
+              </div>
             </App>
           </ConfigProvider>
         </AntdRegistry>
