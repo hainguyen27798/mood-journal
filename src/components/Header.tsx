@@ -2,20 +2,29 @@
 
 import { Badge, Button } from 'antd';
 import { motion } from 'framer-motion';
-import { BellRing } from 'lucide-react';
+import { BellRing, Logs } from 'lucide-react';
 import Image from 'next/image';
 
 import { AnimInText } from '@/lib/motion';
+import { useNav } from '@/store';
 
 export default function Header() {
+  const { isOpen, open, close } = useNav();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: '-100%' }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.5 }}
-      className="sticky flex h-16 w-full items-center justify-between bg-white px-6 shadow-md"
+      className="sticky flex h-16 w-full items-center justify-between bg-white px-4 shadow-md md:px-6"
     >
-      <div className="text-xl font-bold text-neutral-500">
+      <div className="flex items-center gap-2 text-xl font-bold text-neutral-500">
+        <Button
+          className="inline-block md:!hidden"
+          icon={<Logs size={24} className="text-neutral-500" />}
+          onClick={isOpen ? close : open}
+          type="text"
+        ></Button>
         <AnimInText text="Overview" delay={1} />
       </div>
       <div className="flex items-center gap-8">

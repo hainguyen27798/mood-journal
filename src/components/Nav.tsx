@@ -55,7 +55,7 @@ export default function Nav() {
       initial={{ opacity: 0, x: '-100%' }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className="z-10 hidden h-full w-56 border-r bg-white shadow-md md:block"
+      className="z-10 size-full bg-white shadow-md md:border-r"
     >
       <div className="flex h-full flex-col gap-4 px-4 pb-6 pt-3">
         <div className="flex flex-col items-center gap-3">
