@@ -2,7 +2,7 @@
 
 import { Button, Divider } from 'antd';
 import { motion } from 'framer-motion';
-import { Award, Calendar, LayoutGrid, LogOut } from 'lucide-react';
+import { Award, Calendar, LayoutGrid, LogOut, Users } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
@@ -34,6 +34,12 @@ const navMenu: TNavMenuItem[] = [
     href: '/rewards',
     disabled: true,
   },
+  {
+    title: 'Refer a Friend',
+    icon: <Users size={20} />,
+    href: '/refer-a-friend',
+    disabled: true,
+  },
 ];
 
 export default function Nav() {
@@ -59,17 +65,24 @@ export default function Nav() {
           </div>
         </div>
         <div className="flex flex-1 flex-col gap-4 overflow-auto pt-6">
-          {navMenu.map((item) => (
-            <Button
-              key={item.title}
-              type="text"
-              className={`w-full !justify-start !gap-3 text-lg !font-semibold ${pathname === item.href ? '!bg-primary !text-white' : ''}`}
-              icon={item.icon}
-              onClick={() => router.push(item.href)}
-              disabled={item.disabled}
+          {navMenu.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.5, y: '-50%' }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeInOut', delay: 1 + index * 0.4 }}
             >
-              {item.title}
-            </Button>
+              <Button
+                key={item.title}
+                type="text"
+                className={`w-full !justify-start !gap-3 text-lg !font-semibold ${pathname === item.href ? '!bg-primary !text-white' : ''}`}
+                icon={item.icon}
+                onClick={() => router.push(item.href)}
+                disabled={item.disabled}
+              >
+                {item.title}
+              </Button>
+            </motion.div>
           ))}
         </div>
         <Divider className="!m-0" />
