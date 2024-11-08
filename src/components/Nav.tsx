@@ -87,6 +87,10 @@ export default function Nav() {
         </div>
         <Divider className="!m-0" />
         <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <Image height={36} width={36} src="/img/Avatar.svg" alt=""></Image>
+            <div className="text-base font-semibold">Hai Nguyen</div>
+          </div>
           <Button
             type="dashed"
             className="w-full !justify-start !gap-3"

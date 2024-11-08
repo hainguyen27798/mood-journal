@@ -21,5 +21,14 @@ export const themeConfig: ThemeConfig = {
     Divider: {
       colorSplit: colors.neutral[200],
     },
+    DatePicker: {
+      fontFamily: 'var(--font-nunito-sans)',
+      colorBorder: colors.neutral[200],
+      controlHeight: 36,
+    },
+    Radio: {
+      controlHeight: 36,
+      colorBorder: colors.neutral[200],
+    },
   },
 };
