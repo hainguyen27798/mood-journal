@@ -1,24 +1,38 @@
 'use client';
 
-import { App, Button, Input } from 'antd';
+import { App, Button, Form, Input } from 'antd';
 import { motion } from 'framer-motion';
+import { Lock, UserRound } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { loginAction } from '@/_action/LoginAction';
 import { AnimInfinityText } from '@/lib/motion';
+
+type FieldType = {
+  username?: string;
+  password?: string;
+};
 
 export default function Login() {
   const [loading, setLoading] = useState<boolean>(false);
   const { message } = App.useApp();
   const router = useRouter();
 
-  const onLogin = () => {
+  const onLogin = ({ username, password }: FieldType) => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      message.success('Login successfully!').then();
-      router.push('/');
-    }, 2000);
+    loginAction(username!, password!)
+      .then((ok) => {
+        if (ok) {
+          message.success('Login successfully!').then();
+          router.push('/');
+        } else {
+          message.error('Account is invalid').then();
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -32,22 +46,35 @@ export default function Login() {
         <div className="w-full md:w-3/5">
           <img src="/img/login-banner.svg" alt="" />
         </div>
-        <div className="flex w-full flex-col items-center gap-4 p-6 md:w-2/5 md:pl-3">
-          <div className="mb-2 text-center text-xl font-semibold">
-            <AnimInfinityText texts={['Welcome to', 'Login to']} delay={1} />{' '}
-            <span className="font-bold text-primary">Daily Running</span>
-          </div>
-          <div className="w-full">
-            <div className="mb-1 text-sm text-neutral-500">Username</div>
-            <Input placeholder="Username" />
-          </div>
-          <div className="w-full">
-            <div className="mb-1 text-sm text-neutral-500">Password</div>
-            <Input.Password placeholder="Password" />
-          </div>
-          <Button type="primary" className="mt-4 w-full" loading={loading} onClick={onLogin}>
-            {loading ? 'Logging in...' : 'Login'}
-          </Button>
+        <div className="w-full p-6 md:w-2/5 md:pl-3">
+          <Form layout="vertical" onFinish={onLogin}>
+            <div className="mb-4 text-center text-xl font-semibold">
+              <AnimInfinityText texts={['Welcome to', 'Login to']} delay={1} />{' '}
+              <span className="font-bold text-primary">Daily Running</span>
+            </div>
+            <Form.Item<FieldType>
+              name="username"
+              label="Username"
+              className="w-full"
+              rules={[
+                { required: true, message: 'Please input your username!' },
+                { type: 'email', message: 'Invalid email!' },
+              ]}
+            >
+              <Input prefix={<UserRound size={16} className="mr-1 text-neutral-400" />} placeholder="Username" />
+            </Form.Item>
+            <Form.Item<FieldType>
+              name="password"
+              className="w-full"
+              rules={[{ required: true, message: 'Please input your password!' }]}
+              label="Password"
+            >
+              <Input.Password prefix={<Lock size={16} className="mr-1 text-neutral-400" />} placeholder="Password" />
+            </Form.Item>
+            <Button type="primary" className="mt-3 w-full" loading={loading} htmlType="submit">
+              {loading ? 'Logging in...' : 'Login'}
+            </Button>
+          </Form>
         </div>
       </motion.div>
     </div>

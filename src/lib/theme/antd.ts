@@ -6,6 +6,7 @@ export const themeConfig: ThemeConfig = {
     fontFamily: 'var(--font-nunito)',
     colorPrimary: '#8fc0a9',
     colorBorder: colors.neutral[400],
+    colorError: colors.rose[400],
   },
   components: {
     Input: {
@@ -29,6 +30,12 @@ export const themeConfig: ThemeConfig = {
     Radio: {
       controlHeight: 36,
       colorBorder: colors.neutral[200],
+    },
+    Form: {
+      labelColor: colors.neutral[500],
+      verticalLabelPadding: '0 0 5px',
+      labelRequiredMarkColor: colors.rose[400],
+      itemMarginBottom: 20,
     },
   },
 };

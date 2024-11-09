@@ -3,7 +3,7 @@
 import { Drawer } from 'antd';
 import type { DrawerStyles } from 'antd/es/drawer/DrawerPanel';
 
-import Nav from '@/components/Nav';
+import Nav from '@/components/nav/Nav';
 import { useNav } from '@/store';
 
 const drawerStyles: DrawerStyles = {
