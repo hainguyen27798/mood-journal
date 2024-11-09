@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
+import { logoutAction } from '@/_action/LogoutAction';
 import { AnimInText } from '@/lib/motion';
 
 type TNavMenuItem = {
@@ -47,7 +48,9 @@ export default function Nav() {
   const pathname = usePathname();
 
   const onLogout = () => {
-    router.push('/login');
+    logoutAction().finally(() => {
+      router.push('/login');
+    });
   };
 
   return (
