@@ -23,7 +23,7 @@ const format = new Map<string, string>([
 
 export default function HeaderTimePicker() {
   const { update } = useFilter();
-  const [type, setType] = useState<PickerMode>('date');
+  const [type, setType] = useState<PickerMode>('month');
   const [current, setCurrent] = useState<dayjs.Dayjs>(dayjs());
   const screens = useBreakpoint();
 

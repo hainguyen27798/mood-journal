@@ -33,7 +33,7 @@ export default function HeathSummary() {
         className="relative flex shrink grow basis-36 flex-col overflow-hidden rounded-xl bg-white p-4 shadow-md md:basis-48"
       >
         <Loading loading={loading} />
-        <div className="flex items-center gap-2.5 text-base font-bold text-rose-400">
+        <div className="flex items-center gap-2.5 text-base font-bold text-amber-500">
           <Activity size={20} />
           <div className="leading-none">Heart Rate</div>
         </div>
@@ -74,7 +74,7 @@ export default function HeathSummary() {
           className="relative flex grow flex-wrap items-center justify-between gap-3 overflow-hidden rounded-xl bg-white p-4 shadow-md"
         >
           <Loading loading={loading} />
-          <div className="flex items-center gap-2.5 text-base font-bold text-amber-400">
+          <div className="flex items-center gap-2.5 text-base font-bold text-rose-600">
             <Zap size={20} />
             <div className="text-nowrap leading-none">Calories Consumed</div>
           </div>

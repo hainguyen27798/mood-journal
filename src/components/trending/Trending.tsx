@@ -27,8 +27,8 @@ export default function Trending() {
 
   return (
     <>
-      <RunningTrending data={data} loading={loading} />
       <HeartRateTrending data={data} loading={loading} />
+      <RunningTrending data={data} loading={loading} />
     </>
   );
 }

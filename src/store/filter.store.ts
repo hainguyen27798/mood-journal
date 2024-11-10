@@ -11,7 +11,7 @@ interface IFilterState extends IFilterAttrs {
 }
 
 export const useFilter = create<IFilterState>((set) => ({
-  interval: 'date',
+  interval: 'month',
   date: dayjs().valueOf(),
   update: (filter: IFilterAttrs) => set(filter),
 }));
