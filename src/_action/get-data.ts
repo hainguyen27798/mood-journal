@@ -31,5 +31,11 @@ export const getData = async (): Promise<TRecord[]> => {
     });
   }
 
-  return result;
+  const timeout = _.floor(_.random(500, 1200));
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(result);
+    }, timeout);
+  });
 };
