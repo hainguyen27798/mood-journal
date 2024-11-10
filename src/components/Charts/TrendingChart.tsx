@@ -1,5 +1,6 @@
 'use client';
 
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { Area, Bar, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import colors from 'tailwindcss/colors';
 
@@ -10,8 +11,10 @@ type TrendingChartProps = {
 };
 
 export default function TrendingChart({ records }: TrendingChartProps) {
+  const screens = useBreakpoint();
+
   return (
-    <div className="h-[300px] w-full min-w-[160px]">
+    <div className="h-48 w-full min-w-[160px] md:h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart accessibilityLayer data={records} className="focus:outline-none" barCategoryGap={'20%'}>
           <CartesianGrid vertical={false} stroke={colors.neutral[200]} />
@@ -30,7 +33,7 @@ export default function TrendingChart({ records }: TrendingChartProps) {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
-            tick={{ fill: colors.neutral[400], fontSize: 14, fontWeight: 400 }}
+            tick={{ fill: colors.neutral[400], fontSize: screens.md ? 14 : 12, fontWeight: 400 }}
           />
           <YAxis yAxisId="left" hide={true} />
           <YAxis yAxisId="right" hide={true} />

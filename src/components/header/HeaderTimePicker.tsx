@@ -1,6 +1,7 @@
 'use client';
 
 import { DatePicker, Radio } from 'antd';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import dayjs from 'dayjs';
 import { ChevronDown } from 'lucide-react';
 import type { PickerMode } from 'rc-picker/es/interface';
@@ -24,6 +25,7 @@ export default function HeaderTimePicker() {
   const { update } = useFilter();
   const [type, setType] = useState<PickerMode>('date');
   const [current, setCurrent] = useState<dayjs.Dayjs>(dayjs());
+  const screens = useBreakpoint();
 
   const onChange = (value: dayjs.Dayjs) => {
     setCurrent(value);
@@ -36,8 +38,9 @@ export default function HeaderTimePicker() {
   };
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex grow flex-wrap justify-end gap-2 sm:gap-4">
       <Radio.Group
+        size={screens.md ? 'middle' : 'small'}
         block
         options={options}
         defaultValue={type}
@@ -46,6 +49,7 @@ export default function HeaderTimePicker() {
         onChange={(e) => onTypeChange(e.target.value)}
       />
       <DatePicker
+        size={screens.md ? 'middle' : 'small'}
         picker={type}
         value={current}
         onChange={onChange}

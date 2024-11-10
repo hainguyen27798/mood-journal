@@ -6,9 +6,10 @@ import { useEffect } from 'react';
 export interface IAnimTextProps {
   text: string;
   delay: number;
+  className?: string;
 }
 
-export default function AnimInText({ delay, text = '' }: IAnimTextProps) {
+export default function AnimInText({ delay, text = '', className }: IAnimTextProps) {
   const textIndex = useMotionValue(0);
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -24,5 +25,5 @@ export default function AnimInText({ delay, text = '' }: IAnimTextProps) {
     return controls.stop;
   }, [count, delay, textIndex, text]);
 
-  return <motion.span>{displayText}</motion.span>;
+  return <motion.span className={className}>{displayText}</motion.span>;
 }

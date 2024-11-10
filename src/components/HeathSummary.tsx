@@ -27,10 +27,10 @@ export default function HeathSummary() {
   }, [interval, date]);
 
   return (
-    <div className="flex flex-wrap gap-6">
+    <div className="flex flex-wrap gap-4 md:gap-6">
       <AnimTopBottom
         delay={1}
-        className="relative flex shrink grow basis-48 flex-col overflow-hidden rounded-xl bg-white p-4 shadow-md"
+        className="relative flex shrink grow basis-36 flex-col overflow-hidden rounded-xl bg-white p-4 shadow-md md:basis-48"
       >
         <Loading loading={loading} />
         <div className="flex items-center gap-2.5 text-base font-bold text-rose-400">
@@ -43,7 +43,7 @@ export default function HeathSummary() {
       </AnimTopBottom>
       <AnimTopBottom
         delay={1.5}
-        className="relative flex shrink grow basis-48 flex-col overflow-hidden rounded-xl bg-white p-4 shadow-md"
+        className="relative flex shrink grow basis-36 flex-col overflow-hidden rounded-xl bg-white p-4 shadow-md md:basis-48"
       >
         <Loading loading={loading} />
         <div className="flex items-center gap-2.5 text-base font-bold text-teal-500">

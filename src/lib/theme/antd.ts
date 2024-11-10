@@ -11,11 +11,14 @@ export const themeConfig: ThemeConfig = {
   components: {
     Input: {
       // colorBorder: colors.neutral[300],
+      controlHeightXS: 32,
       controlHeight: 36,
       fontFamily: 'var(--font-nunito-sans)',
     },
     Button: {
+      fontSizeSM: 14,
       fontSize: 16,
+      controlHeightSM: 32,
       controlHeight: 36,
       dangerColor: colors.red[400],
     },
@@ -25,9 +28,11 @@ export const themeConfig: ThemeConfig = {
     DatePicker: {
       fontFamily: 'var(--font-nunito-sans)',
       colorBorder: colors.neutral[200],
+      controlHeightSM: 32,
       controlHeight: 36,
     },
     Radio: {
+      controlHeightSM: 32,
       controlHeight: 36,
       colorBorder: colors.neutral[200],
     },
