@@ -1,6 +1,7 @@
 'use client';
 
-import { Activity, Gauge, LandPlot, Zap } from 'lucide-react';
+import _ from 'lodash';
+import { Activity, CircleGauge, LandPlot, Zap } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { getSummaryAction } from '@/_action/GetSummaryAction';
@@ -23,34 +24,49 @@ export default function HeathSummary() {
 
   return (
     <div className="flex flex-wrap gap-6">
-      <AnimTopBottom delay={1} className="flex-1 rounded-xl bg-white p-4 shadow-md">
+      <AnimTopBottom delay={1} className="flex flex-1 flex-col rounded-xl bg-white p-4 shadow-md">
         <div className="flex items-center gap-2.5 text-base font-bold text-rose-400">
           <Activity size={20} />
           <div className="leading-none">Heart Rate</div>
         </div>
-        <HeartRate heartRate={data?.heartRate || 0} />
+        <div className="flex w-full grow items-center">
+          <HeartRate heartRate={data?.heartRate || 0} />
+        </div>
       </AnimTopBottom>
-      <AnimTopBottom delay={1.5} className="flex-1 rounded-xl bg-white p-4 shadow-md">
-        <div className="flex items-center gap-2.5 text-base font-bold text-cyan-400">
-          <Gauge size={20} />
+      <AnimTopBottom delay={1.5} className="flex flex-1 flex-col rounded-xl bg-white p-4 shadow-md">
+        <div className="flex items-center gap-2.5 text-base font-bold text-teal-500">
+          <CircleGauge size={20} />
           <div className="leading-none">Pace</div>
         </div>
-        <PaceChart />
-      </AnimTopBottom>
-      <AnimTopBottom delay={2} className="flex-1 rounded-xl bg-white p-4 shadow-md">
-        <div className="flex items-center gap-2.5 text-base font-bold text-indigo-400">
-          <LandPlot size={20} />
-          <div className="leading-none">Distance</div>
+        <div className="flex w-full grow items-center">
+          <PaceChart pace={data?.pace || 0} />
         </div>
-        <PaceChart />
       </AnimTopBottom>
-      <AnimTopBottom delay={2.5} className="flex-1 rounded-xl bg-white p-4 shadow-md">
-        <div className="flex items-center gap-2.5 text-base font-bold text-amber-400">
-          <Zap size={20} />
-          <div className="leading-none">Kcal</div>
-        </div>
-        <PaceChart />
-      </AnimTopBottom>
+      <div className="flex flex-1 flex-col gap-4">
+        <AnimTopBottom delay={2} className="flex flex-1 items-center justify-between rounded-xl bg-white p-4 shadow-md">
+          <div className="flex items-center gap-2.5 text-base font-bold text-indigo-400">
+            <LandPlot size={20} />
+            <div className="leading-none">Distance</div>
+          </div>
+          <div className="flex flex-wrap items-center gap-1">
+            <span className="text-lg font-bold leading-none">{_.round(data?.distance || 0, 2)}</span>
+            <span className="text-neutral-500">Km</span>
+          </div>
+        </AnimTopBottom>
+        <AnimTopBottom
+          delay={2.5}
+          className="flex flex-1 flex-wrap items-center justify-between gap-3 rounded-xl bg-white p-4 shadow-md"
+        >
+          <div className="flex items-center gap-2.5 text-base font-bold text-amber-400">
+            <Zap size={20} />
+            <div className="text-nowrap leading-none">Calories Consumed</div>
+          </div>
+          <div className="flex flex-wrap items-center gap-1">
+            <span className="text-lg font-bold leading-none">{_.round(data?.calories || 0, 2)}</span>
+            <span className="text-neutral-500">Kcal</span>
+          </div>
+        </AnimTopBottom>
+      </div>
     </div>
   );
 }

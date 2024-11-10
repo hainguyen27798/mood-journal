@@ -10,6 +10,7 @@ type GaugeChartProps = {
   max?: number;
   unit?: string;
   level?: string;
+  label?: number | string;
 };
 
 type TGaugeData = {
@@ -23,7 +24,7 @@ const colorLevels = new Map<string, string>([
   ['veryHigh', colors.rose[400]],
 ]);
 
-export default function GaugeChart({ delay = 0, value, max, unit, level = 'low' }: GaugeChartProps) {
+export default function GaugeChart({ delay = 0, value, max, unit, level = 'low', label }: GaugeChartProps) {
   const [chartData, setChartData] = useState<TGaugeData[]>([{ value: 3, remaining: 7.5 }]);
 
   useMemo(() => {
@@ -46,9 +47,9 @@ export default function GaugeChart({ delay = 0, value, max, unit, level = 'low' 
                   return (
                     <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle">
                       <tspan x={viewBox.cx} y={(viewBox.cy || 0) - 16} className="text-2xl font-bold">
-                        {chartData[0].value}
+                        {label ?? value}
                       </tspan>
-                      <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 4}>
+                      <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 4} className="fill-neutral-500">
                         {unit}
                       </tspan>
                     </text>
