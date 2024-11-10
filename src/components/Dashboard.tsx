@@ -2,6 +2,7 @@ import Header from '@/components/header/Header';
 import HeathSummary from '@/components/HeathSummary';
 import Nav from '@/components/nav/Nav';
 import NavMobile from '@/components/nav/NavMobile';
+import RunningTrending from '@/components/RunningTrending';
 
 export default function Dashboard() {
   return (
@@ -13,6 +14,7 @@ export default function Dashboard() {
         <div className="container mx-auto flex flex-col gap-4 p-4 md:gap-6 md:p-6">
           <Header />
           <HeathSummary />
+          <RunningTrending />
         </div>
       </div>
       <NavMobile />

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { getSummaryAction } from '@/_action/GetSummaryAction';
 import HeartRate from '@/components/Charts/HeartRate';
 import PaceChart from '@/components/Charts/PaceChart';
-import AnimTopBottom from '@/lib/motion/AnimTopBottom';
+import { AnimTopBottom } from '@/lib/motion';
 import { useFilter } from '@/store';
 import type { TRecord } from '@/types';
 
