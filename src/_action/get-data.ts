@@ -1,5 +1,4 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import { createReadStream } from 'node:fs';
 
 import { parse } from 'csv-parse';
 import dayjs from 'dayjs';
@@ -10,7 +9,7 @@ import type { TRecord } from '@/types';
 export const getData = async (): Promise<TRecord[]> => {
   return new Promise((resolve) => {
     const result: TRecord[] = [];
-    fs.createReadStream(path.join(process.cwd(), process.env.NEXT_PUBLIC_MOCK_DATA_URL!))
+    createReadStream(process.cwd() + '/mock/data.csv')
       .pipe(parse({ delimiter: ',', columns: true }))
       .on('data', (row) => {
         result.push({
