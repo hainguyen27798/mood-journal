@@ -2,6 +2,7 @@
 
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { Area, CartesianGrid, ComposedChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
+import type { TooltipProps } from 'recharts/types/component/Tooltip';
 import colors from 'tailwindcss/colors';
 
 import type { TRecord } from '@/types';
@@ -29,9 +30,10 @@ export default function TrendingLineChart({ records }: TrendingChartProps) {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
+            interval="preserveStartEnd"
             tick={{ fill: colors.neutral[400], fontSize: screens.md ? 14 : 12, fontWeight: 400 }}
           />
-          <Tooltip />
+          <Tooltip content={<TrendingLineChartTooltip />} />
           <Area
             type="monotone"
             yAxisId="right"
@@ -46,3 +48,21 @@ export default function TrendingLineChart({ records }: TrendingChartProps) {
     </div>
   );
 }
+
+const TrendingLineChartTooltip = ({ active, payload, label }: TooltipProps<any, any>) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="flex flex-col gap-0.5 rounded bg-white px-3 py-2 shadow">
+        <div className="mb-0.5 text-xs font-bold text-neutral-800">{label}</div>
+        <div className="flex items-center justify-between gap-3 text-sm text-neutral-500">
+          <span className="font-medium text-amber-500">Heart Rate:</span>
+          <span>
+            <span className="font-medium text-neutral-800">{payload[0].payload.heartRate}</span> bpm
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+};
